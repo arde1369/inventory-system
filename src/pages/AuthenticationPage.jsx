@@ -10,8 +10,8 @@ export async function authAction({request}){
     const reqData = await request.formData()
 
     const authData = {
-        email : reqData.email,
-        password : reqData.password
+        username : reqData.get('username'),
+        // password : reqData.get('password')
     }
 
     // const response = await fetch('localhost:8080/login', {
@@ -34,7 +34,7 @@ export async function authAction({request}){
 
     //     localStorage.setItem('expiration', expiration.toISOString())
 
-        return redirect('/inventory-system')
+        return redirect('/inventory-system?username='+authData.username)
     // }
 
     // return response

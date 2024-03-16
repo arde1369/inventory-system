@@ -29,15 +29,18 @@ function App() {
         },
         {
           path : 'new-order',
-          element : <NewOrderPage />
+          element : <NewOrderPage />,
+          loader : checkIsLoggedIn
         },
         {
           path : 'inventory',
-          element : <InventoryPage />
+          element : <InventoryPage />,
+          loader : checkIsLoggedIn
         },
         {
           path : 'lookup-order',
-          element : <LookupOrderPage />
+          element : <LookupOrderPage />,
+          loader : checkIsLoggedIn
         },
       ]
     },

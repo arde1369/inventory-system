@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterStore from "./CounterStore";
+import authStore from "./AuthStore";
 
 const reduxStore = configureStore({
     reducer : {
-        counter : counterStore
+        auth : authStore
     }
 })
 

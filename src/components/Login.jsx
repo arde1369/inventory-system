@@ -10,13 +10,13 @@ export function Login(){
         <Form method="post" className={classes.form}>
             <h1>User Login</h1>
             <p>
-                <label htmlFor="email">Email</label>
-                <input id="email" type="email" name="email" required />
+                <label htmlFor="username">Email</label>
+                <input id="username" type="text" name="username" required />
             </p>
-            <p>
+            {/* <p>
                 <label htmlFor="image">Password</label>
                 <input id="password" type="password" name="password" required />
-            </p>
+            </p> */}
             <div className={classes.actions}>
                 <button disabled={isSubmitting}>{isSubmitting ? 'Logging in...' : 'Login'}</button>
             </div>

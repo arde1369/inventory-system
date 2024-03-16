@@ -1,8 +1,20 @@
-import { Form, NavLink } from "react-router-dom";
+import { Form, useSearchParams } from "react-router-dom";
 import { MainNavigationLinks } from "./MainNavLinks";
 import classes from './styles/MainNavigation.module.css';
+import { useDispatch } from "react-redux";
+import { authActions } from "../redux-store/AuthStore";
+
 
 export function MainNavigation(){
+    const [ searchParams ] = useSearchParams()
+    const dispatch = useDispatch()
+    
+    const loggedInUserSearchParam = searchParams.get('username')
+
+    if(loggedInUserSearchParam !== null && loggedInUserSearchParam !== undefined && loggedInUserSearchParam !== ''){
+        dispatch(authActions.setLoggedInUser(loggedInUserSearchParam))
+    }
+
     const pages = [
         {
             text : 'Home',
@@ -28,8 +40,8 @@ export function MainNavigation(){
                 <div>
                     <ul className={classes.list}>
                         <MainNavigationLinks pages={pages} classes={classes} />
-                        <li>
-                            <Form action='/logout' method='post' className={({ isActive }) => isActive ? classes.active : undefined } end>
+                        <li key="logout">
+                            <Form action='/logout' method='post' className={({ isActive }) => isActive ? classes.active : undefined }>
                                 <button>Logout</button>
                             </Form>
                         </li>

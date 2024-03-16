@@ -5,8 +5,8 @@ export function MainNavigationLinks({pages, classes}){
         <>
             {pages.map(page => {
                 return (
-                    <li>
-                        <NavLink to={page.path} className={({ isActive }) => isActive ? classes.active : undefined } end >
+                    <li key={page.path}>
+                        <NavLink to={page.path} className={({ isActive }) => isActive ? classes.active : undefined } >
                             {page.text}
                         </NavLink>
                     </li>
