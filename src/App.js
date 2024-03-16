@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { QueryClientProvider } from '@tanstack/react-query';
@@ -8,6 +7,9 @@ import { HomePage } from './pages/HomePage';
 import { checkIsLoggedIn } from './components/util/AuthenticationHelper';
 import RootPage from './pages/RootPage'
 import { logoutHelper } from './components/util/LogoutHelper';
+import { NewOrderPage } from './pages/NewOrderPage';
+import { InventoryPage } from  './pages/InventoryPage'
+import { LookupOrderPage } from  './pages/LookupOrderPage'
 
 function App() {
   const router = createBrowserRouter([
@@ -17,14 +19,26 @@ function App() {
       action : authAction
     },
     {
-      path : '/home',
+      path : '/inventory-system',
       element : <RootPage />,
       children : [
         {
           index : true,
           element : <HomePage />,
           loader : checkIsLoggedIn
-        }
+        },
+        {
+          path : 'new-order',
+          element : <NewOrderPage />
+        },
+        {
+          path : 'inventory',
+          element : <InventoryPage />
+        },
+        {
+          path : 'lookup-order',
+          element : <LookupOrderPage />
+        },
       ]
     },
     {

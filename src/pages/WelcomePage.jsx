@@ -34,7 +34,7 @@ export async function authAction({request}){
 
     //     localStorage.setItem('expiration', expiration.toISOString())
 
-        return redirect('/inventory-system')
+        return redirect('/home')
     // }
 
     // return response
