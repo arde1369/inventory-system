@@ -1,3 +1,4 @@
+import React from 'react';
 import { Form, useSearchParams } from "react-router-dom";
 import { MainNavigationLinks } from "./MainNavLinks";
 import classes from './styles/MainNavigation.module.css';

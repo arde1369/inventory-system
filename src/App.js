@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { QueryClientProvider } from '@tanstack/react-query';
@@ -7,7 +8,7 @@ import { HomePage } from './pages/HomePage';
 import { checkIsLoggedIn } from './components/util/AuthenticationHelper';
 import RootPage from './pages/RootPage'
 import { logoutHelper } from './components/util/LogoutHelper';
-import { NewOrderPage } from './pages/NewOrderPage';
+import { NewOrderPage, newOrderAction } from './pages/NewOrderPage';
 import { InventoryPage } from  './pages/InventoryPage'
 import { LookupOrderPage } from  './pages/LookupOrderPage'
 
