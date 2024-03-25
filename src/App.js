@@ -11,6 +11,7 @@ import { logoutHelper } from './components/util/LogoutHelper';
 import { NewOrderPage, newOrderAction } from './pages/NewOrderPage';
 import { InventoryPage } from  './pages/InventoryPage'
 import { LookupOrderPage } from  './pages/LookupOrderPage'
+import { qClient } from './components/util/QueryClient';
 
 function App() {
   const router = createBrowserRouter([
@@ -53,7 +54,9 @@ function App() {
   ])
 
   return (
+    <QueryClientProvider client={qClient}>
       <RouterProvider router={router} />
+    </QueryClientProvider>
   );
 }
 

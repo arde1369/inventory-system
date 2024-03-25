@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import Select from "react-select"
+import { useQuery } from '@tanstack/react-query';
 import { getAllItems, submitOrderToBackEnd } from "../http/ItemsHttpClient"
 
+
+
 export function NewOrder(){
-    const loadedOptions = getAllItems()
-    const formattedForSelect = []
+
     const [options, setOptions] = useState([])
     const [submissionResponse, setSubmissionResponse] = useState(null)
 
-    for(var i = 0; i < loadedOptions.length; i++){
-        formattedForSelect.push({label : `${loadedOptions[i].id + " : " + loadedOptions[i].name}`, value : loadedOptions[i].id})
-    }
+    const {data, isPending, isError, error} = useQuery({
+        queryKey : ['items'],
+        queryFn : getAllItems
+    })
 
     function handleUpdate(selectedOptions){
         setOptions(selectedOptions)
@@ -31,18 +34,28 @@ export function NewOrder(){
     return (
         <>
             <h1>Create a new New Order</h1>
-            <form onSubmit={handleSubmit}>
-                <Select
-                    isMulti
-                    name="selectedItems"
-                    options={formattedForSelect}
-                    className="basic-multi-select"
-                    classNamePrefix="select"
-                    onChange={handleUpdate}
-                    value={options}
-                />
-                <button>Submit Order</button>
-            </form>
+            {isError && 
+                    <div>
+                        <h3>Error occurred retreiving items from database. Please try again...</h3>
+
+                    </div>
+                }
+            {isPending && <p>Fetching items from database. Please wait...</p>}
+            {data &&
+                <form onSubmit={handleSubmit}>
+
+                        <Select
+                            isMulti
+                            name="selectedItems"
+                            options={data}
+                            className="basic-multi-select"
+                            classNamePrefix="select"
+                            onChange={handleUpdate}
+                            value={options}
+                        />
+                    <button>Submit Order</button>
+                </form>
+            }
             {submissionResponse && <p>{submissionResponse}</p>}
         </>
     )

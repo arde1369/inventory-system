@@ -1,5 +1,5 @@
 export function verifyUsername(authData) {
-    // const response = await fetch('localhost:8080/login', {
+    // const response = await fetch('localhost:8080/verify', {
     //     method : 'POST',
     //     headers : {
     //         'Content-Type' : 'application/json'
